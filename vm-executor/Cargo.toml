@@ -1,0 +1,19 @@
+[package]
+name = "drt-chain-vm-executor"
+version = "0.0.1"
+edition = "2021"
+
+authors = [
+    "xfactor <xfactor.toml@gmail.com>",
+]
+license = "GPL-3.0-only"
+readme = "README.md"
+repository = "https://github.com/DharitriOne/drt-vm-executor-rs"
+homepage = "https://DharitriOne.com/"
+documentation = "https://docs.DharitriOne.com/"
+description = "DharitriOne VM executor interface"
+keywords = ["DharitriOne", "blockchain", "VM"]
+categories = ["cryptography::cryptocurrencies"]
+
+[lib]
+
