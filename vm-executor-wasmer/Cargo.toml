@@ -1,13 +1,13 @@
 [package]
 name = "drt-chain-vm-executor-wasmer"
-version = "0.2.0"
+version = "0.0.2"
 edition = "2021"
 publish = false # will also be published, but it is not yet ready for that
 
 [lib]
 
 [dependencies.drt-chain-vm-executor]
-version = "0.2.0"
+version = "0.0.2"
 path = "../vm-executor"
 
 [dependencies]

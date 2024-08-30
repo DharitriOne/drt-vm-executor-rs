@@ -21,18 +21,18 @@ pub trait VMHooks: core::fmt::Debug + 'static {
     fn signal_error(&self, message_offset: MemPtr, message_length: MemLength);
     fn get_external_balance(&self, address_offset: MemPtr, result_offset: MemPtr);
     fn get_block_hash(&self, nonce: i64, result_offset: MemPtr) -> i32;
-    fn get_dct_balance(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64, result_offset: MemPtr) -> i32;
-    fn get_dct_nft_name_length(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64) -> i32;
-    fn get_dct_nft_attribute_length(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64) -> i32;
-    fn get_dct_nft_uri_length(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64) -> i32;
-    fn get_dct_token_data(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64, value_handle: i32, properties_offset: MemPtr, hash_offset: MemPtr, name_offset: MemPtr, attributes_offset: MemPtr, creator_offset: MemPtr, royalties_handle: i32, uris_offset: MemPtr) -> i32;
-    fn get_dct_local_roles(&self, token_id_handle: i32) -> i64;
+    fn get_dcdt_balance(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64, result_offset: MemPtr) -> i32;
+    fn get_dcdt_nft_name_length(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64) -> i32;
+    fn get_dcdt_nft_attribute_length(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64) -> i32;
+    fn get_dcdt_nft_uri_length(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64) -> i32;
+    fn get_dcdt_token_data(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64, value_handle: i32, properties_offset: MemPtr, hash_offset: MemPtr, name_offset: MemPtr, attributes_offset: MemPtr, creator_offset: MemPtr, royalties_handle: i32, uris_offset: MemPtr) -> i32;
+    fn get_dcdt_local_roles(&self, token_id_handle: i32) -> i64;
     fn validate_token_identifier(&self, token_id_handle: i32) -> i32;
     fn transfer_value(&self, dest_offset: MemPtr, value_offset: MemPtr, data_offset: MemPtr, length: MemLength) -> i32;
     fn transfer_value_execute(&self, dest_offset: MemPtr, value_offset: MemPtr, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32;
-    fn transfer_dct_execute(&self, dest_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, value_offset: MemPtr, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32;
-    fn transfer_dct_nft_execute(&self, dest_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, value_offset: MemPtr, nonce: i64, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32;
-    fn multi_transfer_dct_nft_execute(&self, dest_offset: MemPtr, num_token_transfers: i32, token_transfers_args_length_offset: MemPtr, token_transfer_data_offset: MemPtr, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32;
+    fn transfer_dcdt_execute(&self, dest_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, value_offset: MemPtr, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32;
+    fn transfer_dcdt_nft_execute(&self, dest_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, value_offset: MemPtr, nonce: i64, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32;
+    fn multi_transfer_dcdt_nft_execute(&self, dest_offset: MemPtr, num_token_transfers: i32, token_transfers_args_length_offset: MemPtr, token_transfer_data_offset: MemPtr, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32;
     fn create_async_call(&self, dest_offset: MemPtr, value_offset: MemPtr, data_offset: MemPtr, data_length: MemLength, success_offset: MemPtr, success_length: MemLength, error_offset: MemPtr, error_length: MemLength, gas: i64, extra_gas_for_callback: i64) -> i32;
     fn set_async_context_callback(&self, callback: MemPtr, callback_length: MemLength, data: MemPtr, data_length: MemLength, gas: i64) -> i32;
     fn upgrade_contract(&self, dest_offset: MemPtr, gas_limit: i64, value_offset: MemPtr, code_offset: MemPtr, code_metadata_offset: MemPtr, length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr);
@@ -54,16 +54,16 @@ pub trait VMHooks: core::fmt::Debug + 'static {
     fn get_caller(&self, result_offset: MemPtr);
     fn check_no_payment(&self);
     fn get_call_value(&self, result_offset: MemPtr) -> i32;
-    fn get_dct_value(&self, result_offset: MemPtr) -> i32;
-    fn get_dct_value_by_index(&self, result_offset: MemPtr, index: i32) -> i32;
-    fn get_dct_token_name(&self, result_offset: MemPtr) -> i32;
-    fn get_dct_token_name_by_index(&self, result_offset: MemPtr, index: i32) -> i32;
-    fn get_dct_token_nonce(&self) -> i64;
-    fn get_dct_token_nonce_by_index(&self, index: i32) -> i64;
-    fn get_current_dct_nft_nonce(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength) -> i64;
-    fn get_dct_token_type(&self) -> i32;
-    fn get_dct_token_type_by_index(&self, index: i32) -> i32;
-    fn get_num_dct_transfers(&self) -> i32;
+    fn get_dcdt_value(&self, result_offset: MemPtr) -> i32;
+    fn get_dcdt_value_by_index(&self, result_offset: MemPtr, index: i32) -> i32;
+    fn get_dcdt_token_name(&self, result_offset: MemPtr) -> i32;
+    fn get_dcdt_token_name_by_index(&self, result_offset: MemPtr, index: i32) -> i32;
+    fn get_dcdt_token_nonce(&self) -> i64;
+    fn get_dcdt_token_nonce_by_index(&self, index: i32) -> i64;
+    fn get_current_dcdt_nft_nonce(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength) -> i64;
+    fn get_dcdt_token_type(&self) -> i32;
+    fn get_dcdt_token_type_by_index(&self, index: i32) -> i32;
+    fn get_num_dcdt_transfers(&self) -> i32;
     fn get_call_value_token_name(&self, call_value_offset: MemPtr, token_name_offset: MemPtr) -> i32;
     fn get_call_value_token_name_by_index(&self, call_value_offset: MemPtr, token_name_offset: MemPtr, index: i32) -> i32;
     fn write_log(&self, data_pointer: MemPtr, data_length: MemLength, topic_ptr: MemPtr, num_topics: i32);
@@ -103,10 +103,10 @@ pub trait VMHooks: core::fmt::Debug + 'static {
     fn managed_get_block_random_seed(&self, result_handle: i32);
     fn managed_get_prev_block_random_seed(&self, result_handle: i32);
     fn managed_get_return_data(&self, result_id: i32, result_handle: i32);
-    fn managed_get_multi_dct_call_value(&self, multi_call_value_handle: i32);
-    fn managed_get_back_transfers(&self, dct_transfers_value_handle: i32, call_value_handle: i32);
-    fn managed_get_dct_balance(&self, address_handle: i32, token_id_handle: i32, nonce: i64, value_handle: i32);
-    fn managed_get_dct_token_data(&self, address_handle: i32, token_id_handle: i32, nonce: i64, value_handle: i32, properties_handle: i32, hash_handle: i32, name_handle: i32, attributes_handle: i32, creator_handle: i32, royalties_handle: i32, uris_handle: i32);
+    fn managed_get_multi_dcdt_call_value(&self, multi_call_value_handle: i32);
+    fn managed_get_back_transfers(&self, dcdt_transfers_value_handle: i32, call_value_handle: i32);
+    fn managed_get_dcdt_balance(&self, address_handle: i32, token_id_handle: i32, nonce: i64, value_handle: i32);
+    fn managed_get_dcdt_token_data(&self, address_handle: i32, token_id_handle: i32, nonce: i64, value_handle: i32, properties_handle: i32, hash_handle: i32, name_handle: i32, attributes_handle: i32, creator_handle: i32, royalties_handle: i32, uris_handle: i32);
     fn managed_async_call(&self, dest_handle: i32, value_handle: i32, function_handle: i32, arguments_handle: i32);
     fn managed_create_async_call(&self, dest_handle: i32, value_handle: i32, function_handle: i32, arguments_handle: i32, success_offset: MemPtr, success_length: MemLength, error_offset: MemPtr, error_length: MemLength, gas: i64, extra_gas_for_callback: i64, callback_closure_handle: i32) -> i32;
     fn managed_get_callback_closure(&self, callback_closure_handle: i32);
@@ -118,11 +118,11 @@ pub trait VMHooks: core::fmt::Debug + 'static {
     fn managed_execute_read_only(&self, gas: i64, address_handle: i32, function_handle: i32, arguments_handle: i32, result_handle: i32) -> i32;
     fn managed_execute_on_same_context(&self, gas: i64, address_handle: i32, value_handle: i32, function_handle: i32, arguments_handle: i32, result_handle: i32) -> i32;
     fn managed_execute_on_dest_context(&self, gas: i64, address_handle: i32, value_handle: i32, function_handle: i32, arguments_handle: i32, result_handle: i32) -> i32;
-    fn managed_multi_transfer_dct_nft_execute(&self, dst_handle: i32, token_transfers_handle: i32, gas_limit: i64, function_handle: i32, arguments_handle: i32) -> i32;
+    fn managed_multi_transfer_dcdt_nft_execute(&self, dst_handle: i32, token_transfers_handle: i32, gas_limit: i64, function_handle: i32, arguments_handle: i32) -> i32;
     fn managed_transfer_value_execute(&self, dst_handle: i32, value_handle: i32, gas_limit: i64, function_handle: i32, arguments_handle: i32) -> i32;
-    fn managed_is_dct_frozen(&self, address_handle: i32, token_id_handle: i32, nonce: i64) -> i32;
-    fn managed_is_dct_limited_transfer(&self, token_id_handle: i32) -> i32;
-    fn managed_is_dct_paused(&self, token_id_handle: i32) -> i32;
+    fn managed_is_dcdt_frozen(&self, address_handle: i32, token_id_handle: i32, nonce: i64) -> i32;
+    fn managed_is_dcdt_limited_transfer(&self, token_id_handle: i32) -> i32;
+    fn managed_is_dcdt_paused(&self, token_id_handle: i32) -> i32;
     fn managed_buffer_to_hex(&self, source_handle: i32, dest_handle: i32);
     fn managed_get_code_metadata(&self, address_handle: i32, response_handle: i32);
     fn managed_is_builtin_function(&self, function_name_handle: i32) -> i32;
@@ -153,10 +153,10 @@ pub trait VMHooks: core::fmt::Debug + 'static {
     fn big_int_storage_store_unsigned(&self, key_offset: MemPtr, key_length: MemLength, source_handle: i32) -> i32;
     fn big_int_storage_load_unsigned(&self, key_offset: MemPtr, key_length: MemLength, destination_handle: i32) -> i32;
     fn big_int_get_call_value(&self, destination_handle: i32);
-    fn big_int_get_dct_call_value(&self, destination: i32);
-    fn big_int_get_dct_call_value_by_index(&self, destination_handle: i32, index: i32);
+    fn big_int_get_dcdt_call_value(&self, destination: i32);
+    fn big_int_get_dcdt_call_value_by_index(&self, destination_handle: i32, index: i32);
     fn big_int_get_external_balance(&self, address_offset: MemPtr, result: i32);
-    fn big_int_get_dct_external_balance(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64, result_handle: i32);
+    fn big_int_get_dcdt_external_balance(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64, result_handle: i32);
     fn big_int_new(&self, small_value: i64) -> i32;
     fn big_int_unsigned_byte_length(&self, reference_handle: i32) -> i32;
     fn big_int_signed_byte_length(&self, reference_handle: i32) -> i32;
@@ -316,33 +316,33 @@ impl VMHooks for VMHooksDefault {
         0
     }
 
-    fn get_dct_balance(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64, result_offset: MemPtr) -> i32 {
-        println!("Called: get_dct_balance");
+    fn get_dcdt_balance(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64, result_offset: MemPtr) -> i32 {
+        println!("Called: get_dcdt_balance");
         0
     }
 
-    fn get_dct_nft_name_length(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64) -> i32 {
-        println!("Called: get_dct_nft_name_length");
+    fn get_dcdt_nft_name_length(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64) -> i32 {
+        println!("Called: get_dcdt_nft_name_length");
         0
     }
 
-    fn get_dct_nft_attribute_length(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64) -> i32 {
-        println!("Called: get_dct_nft_attribute_length");
+    fn get_dcdt_nft_attribute_length(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64) -> i32 {
+        println!("Called: get_dcdt_nft_attribute_length");
         0
     }
 
-    fn get_dct_nft_uri_length(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64) -> i32 {
-        println!("Called: get_dct_nft_uri_length");
+    fn get_dcdt_nft_uri_length(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64) -> i32 {
+        println!("Called: get_dcdt_nft_uri_length");
         0
     }
 
-    fn get_dct_token_data(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64, value_handle: i32, properties_offset: MemPtr, hash_offset: MemPtr, name_offset: MemPtr, attributes_offset: MemPtr, creator_offset: MemPtr, royalties_handle: i32, uris_offset: MemPtr) -> i32 {
-        println!("Called: get_dct_token_data");
+    fn get_dcdt_token_data(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64, value_handle: i32, properties_offset: MemPtr, hash_offset: MemPtr, name_offset: MemPtr, attributes_offset: MemPtr, creator_offset: MemPtr, royalties_handle: i32, uris_offset: MemPtr) -> i32 {
+        println!("Called: get_dcdt_token_data");
         0
     }
 
-    fn get_dct_local_roles(&self, token_id_handle: i32) -> i64 {
-        println!("Called: get_dct_local_roles");
+    fn get_dcdt_local_roles(&self, token_id_handle: i32) -> i64 {
+        println!("Called: get_dcdt_local_roles");
         0
     }
 
@@ -361,18 +361,18 @@ impl VMHooks for VMHooksDefault {
         0
     }
 
-    fn transfer_dct_execute(&self, dest_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, value_offset: MemPtr, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32 {
-        println!("Called: transfer_dct_execute");
+    fn transfer_dcdt_execute(&self, dest_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, value_offset: MemPtr, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32 {
+        println!("Called: transfer_dcdt_execute");
         0
     }
 
-    fn transfer_dct_nft_execute(&self, dest_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, value_offset: MemPtr, nonce: i64, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32 {
-        println!("Called: transfer_dct_nft_execute");
+    fn transfer_dcdt_nft_execute(&self, dest_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, value_offset: MemPtr, nonce: i64, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32 {
+        println!("Called: transfer_dcdt_nft_execute");
         0
     }
 
-    fn multi_transfer_dct_nft_execute(&self, dest_offset: MemPtr, num_token_transfers: i32, token_transfers_args_length_offset: MemPtr, token_transfer_data_offset: MemPtr, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32 {
-        println!("Called: multi_transfer_dct_nft_execute");
+    fn multi_transfer_dcdt_nft_execute(&self, dest_offset: MemPtr, num_token_transfers: i32, token_transfers_args_length_offset: MemPtr, token_transfer_data_offset: MemPtr, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32 {
+        println!("Called: multi_transfer_dcdt_nft_execute");
         0
     }
 
@@ -475,53 +475,53 @@ impl VMHooks for VMHooksDefault {
         0
     }
 
-    fn get_dct_value(&self, result_offset: MemPtr) -> i32 {
-        println!("Called: get_dct_value");
+    fn get_dcdt_value(&self, result_offset: MemPtr) -> i32 {
+        println!("Called: get_dcdt_value");
         0
     }
 
-    fn get_dct_value_by_index(&self, result_offset: MemPtr, index: i32) -> i32 {
-        println!("Called: get_dct_value_by_index");
+    fn get_dcdt_value_by_index(&self, result_offset: MemPtr, index: i32) -> i32 {
+        println!("Called: get_dcdt_value_by_index");
         0
     }
 
-    fn get_dct_token_name(&self, result_offset: MemPtr) -> i32 {
-        println!("Called: get_dct_token_name");
+    fn get_dcdt_token_name(&self, result_offset: MemPtr) -> i32 {
+        println!("Called: get_dcdt_token_name");
         0
     }
 
-    fn get_dct_token_name_by_index(&self, result_offset: MemPtr, index: i32) -> i32 {
-        println!("Called: get_dct_token_name_by_index");
+    fn get_dcdt_token_name_by_index(&self, result_offset: MemPtr, index: i32) -> i32 {
+        println!("Called: get_dcdt_token_name_by_index");
         0
     }
 
-    fn get_dct_token_nonce(&self) -> i64 {
-        println!("Called: get_dct_token_nonce");
+    fn get_dcdt_token_nonce(&self) -> i64 {
+        println!("Called: get_dcdt_token_nonce");
         0
     }
 
-    fn get_dct_token_nonce_by_index(&self, index: i32) -> i64 {
-        println!("Called: get_dct_token_nonce_by_index");
+    fn get_dcdt_token_nonce_by_index(&self, index: i32) -> i64 {
+        println!("Called: get_dcdt_token_nonce_by_index");
         0
     }
 
-    fn get_current_dct_nft_nonce(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength) -> i64 {
-        println!("Called: get_current_dct_nft_nonce");
+    fn get_current_dcdt_nft_nonce(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength) -> i64 {
+        println!("Called: get_current_dcdt_nft_nonce");
         0
     }
 
-    fn get_dct_token_type(&self) -> i32 {
-        println!("Called: get_dct_token_type");
+    fn get_dcdt_token_type(&self) -> i32 {
+        println!("Called: get_dcdt_token_type");
         0
     }
 
-    fn get_dct_token_type_by_index(&self, index: i32) -> i32 {
-        println!("Called: get_dct_token_type_by_index");
+    fn get_dcdt_token_type_by_index(&self, index: i32) -> i32 {
+        println!("Called: get_dcdt_token_type_by_index");
         0
     }
 
-    fn get_num_dct_transfers(&self) -> i32 {
-        println!("Called: get_num_dct_transfers");
+    fn get_num_dcdt_transfers(&self) -> i32 {
+        println!("Called: get_num_dcdt_transfers");
         0
     }
 
@@ -699,20 +699,20 @@ impl VMHooks for VMHooksDefault {
         println!("Called: managed_get_return_data");
     }
 
-    fn managed_get_multi_dct_call_value(&self, multi_call_value_handle: i32) {
-        println!("Called: managed_get_multi_dct_call_value");
+    fn managed_get_multi_dcdt_call_value(&self, multi_call_value_handle: i32) {
+        println!("Called: managed_get_multi_dcdt_call_value");
     }
 
-    fn managed_get_back_transfers(&self, dct_transfers_value_handle: i32, call_value_handle: i32) {
+    fn managed_get_back_transfers(&self, dcdt_transfers_value_handle: i32, call_value_handle: i32) {
         println!("Called: managed_get_back_transfers");
     }
 
-    fn managed_get_dct_balance(&self, address_handle: i32, token_id_handle: i32, nonce: i64, value_handle: i32) {
-        println!("Called: managed_get_dct_balance");
+    fn managed_get_dcdt_balance(&self, address_handle: i32, token_id_handle: i32, nonce: i64, value_handle: i32) {
+        println!("Called: managed_get_dcdt_balance");
     }
 
-    fn managed_get_dct_token_data(&self, address_handle: i32, token_id_handle: i32, nonce: i64, value_handle: i32, properties_handle: i32, hash_handle: i32, name_handle: i32, attributes_handle: i32, creator_handle: i32, royalties_handle: i32, uris_handle: i32) {
-        println!("Called: managed_get_dct_token_data");
+    fn managed_get_dcdt_token_data(&self, address_handle: i32, token_id_handle: i32, nonce: i64, value_handle: i32, properties_handle: i32, hash_handle: i32, name_handle: i32, attributes_handle: i32, creator_handle: i32, royalties_handle: i32, uris_handle: i32) {
+        println!("Called: managed_get_dcdt_token_data");
     }
 
     fn managed_async_call(&self, dest_handle: i32, value_handle: i32, function_handle: i32, arguments_handle: i32) {
@@ -765,8 +765,8 @@ impl VMHooks for VMHooksDefault {
         0
     }
 
-    fn managed_multi_transfer_dct_nft_execute(&self, dst_handle: i32, token_transfers_handle: i32, gas_limit: i64, function_handle: i32, arguments_handle: i32) -> i32 {
-        println!("Called: managed_multi_transfer_dct_nft_execute");
+    fn managed_multi_transfer_dcdt_nft_execute(&self, dst_handle: i32, token_transfers_handle: i32, gas_limit: i64, function_handle: i32, arguments_handle: i32) -> i32 {
+        println!("Called: managed_multi_transfer_dcdt_nft_execute");
         0
     }
 
@@ -775,18 +775,18 @@ impl VMHooks for VMHooksDefault {
         0
     }
 
-    fn managed_is_dct_frozen(&self, address_handle: i32, token_id_handle: i32, nonce: i64) -> i32 {
-        println!("Called: managed_is_dct_frozen");
+    fn managed_is_dcdt_frozen(&self, address_handle: i32, token_id_handle: i32, nonce: i64) -> i32 {
+        println!("Called: managed_is_dcdt_frozen");
         0
     }
 
-    fn managed_is_dct_limited_transfer(&self, token_id_handle: i32) -> i32 {
-        println!("Called: managed_is_dct_limited_transfer");
+    fn managed_is_dcdt_limited_transfer(&self, token_id_handle: i32) -> i32 {
+        println!("Called: managed_is_dcdt_limited_transfer");
         0
     }
 
-    fn managed_is_dct_paused(&self, token_id_handle: i32) -> i32 {
-        println!("Called: managed_is_dct_paused");
+    fn managed_is_dcdt_paused(&self, token_id_handle: i32) -> i32 {
+        println!("Called: managed_is_dcdt_paused");
         0
     }
 
@@ -919,20 +919,20 @@ impl VMHooks for VMHooksDefault {
         println!("Called: big_int_get_call_value");
     }
 
-    fn big_int_get_dct_call_value(&self, destination: i32) {
-        println!("Called: big_int_get_dct_call_value");
+    fn big_int_get_dcdt_call_value(&self, destination: i32) {
+        println!("Called: big_int_get_dcdt_call_value");
     }
 
-    fn big_int_get_dct_call_value_by_index(&self, destination_handle: i32, index: i32) {
-        println!("Called: big_int_get_dct_call_value_by_index");
+    fn big_int_get_dcdt_call_value_by_index(&self, destination_handle: i32, index: i32) {
+        println!("Called: big_int_get_dcdt_call_value_by_index");
     }
 
     fn big_int_get_external_balance(&self, address_offset: MemPtr, result: i32) {
         println!("Called: big_int_get_external_balance");
     }
 
-    fn big_int_get_dct_external_balance(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64, result_handle: i32) {
-        println!("Called: big_int_get_dct_external_balance");
+    fn big_int_get_dcdt_external_balance(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64, result_handle: i32) {
+        println!("Called: big_int_get_dcdt_external_balance");
     }
 
     fn big_int_new(&self, small_value: i64) -> i32 {

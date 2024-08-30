@@ -71,28 +71,28 @@ impl drt_chain_vm_executor::VMHooks for CapiVMHooks {
         (self.c_func_pointers_ptr.get_block_hash_func_ptr)(self.vm_hooks_ptr, nonce, self.convert_mem_ptr(result_offset))
     }
 
-    fn get_dct_balance(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64, result_offset: MemPtr) -> i32 {
-        (self.c_func_pointers_ptr.get_dct_balance_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(address_offset), self.convert_mem_ptr(token_id_offset), self.convert_mem_length(token_id_len), nonce, self.convert_mem_ptr(result_offset))
+    fn get_dcdt_balance(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64, result_offset: MemPtr) -> i32 {
+        (self.c_func_pointers_ptr.get_dcdt_balance_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(address_offset), self.convert_mem_ptr(token_id_offset), self.convert_mem_length(token_id_len), nonce, self.convert_mem_ptr(result_offset))
     }
 
-    fn get_dct_nft_name_length(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64) -> i32 {
-        (self.c_func_pointers_ptr.get_dct_nft_name_length_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(address_offset), self.convert_mem_ptr(token_id_offset), self.convert_mem_length(token_id_len), nonce)
+    fn get_dcdt_nft_name_length(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64) -> i32 {
+        (self.c_func_pointers_ptr.get_dcdt_nft_name_length_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(address_offset), self.convert_mem_ptr(token_id_offset), self.convert_mem_length(token_id_len), nonce)
     }
 
-    fn get_dct_nft_attribute_length(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64) -> i32 {
-        (self.c_func_pointers_ptr.get_dct_nft_attribute_length_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(address_offset), self.convert_mem_ptr(token_id_offset), self.convert_mem_length(token_id_len), nonce)
+    fn get_dcdt_nft_attribute_length(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64) -> i32 {
+        (self.c_func_pointers_ptr.get_dcdt_nft_attribute_length_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(address_offset), self.convert_mem_ptr(token_id_offset), self.convert_mem_length(token_id_len), nonce)
     }
 
-    fn get_dct_nft_uri_length(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64) -> i32 {
-        (self.c_func_pointers_ptr.get_dct_nft_uri_length_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(address_offset), self.convert_mem_ptr(token_id_offset), self.convert_mem_length(token_id_len), nonce)
+    fn get_dcdt_nft_uri_length(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64) -> i32 {
+        (self.c_func_pointers_ptr.get_dcdt_nft_uri_length_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(address_offset), self.convert_mem_ptr(token_id_offset), self.convert_mem_length(token_id_len), nonce)
     }
 
-    fn get_dct_token_data(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64, value_handle: i32, properties_offset: MemPtr, hash_offset: MemPtr, name_offset: MemPtr, attributes_offset: MemPtr, creator_offset: MemPtr, royalties_handle: i32, uris_offset: MemPtr) -> i32 {
-        (self.c_func_pointers_ptr.get_dct_token_data_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(address_offset), self.convert_mem_ptr(token_id_offset), self.convert_mem_length(token_id_len), nonce, value_handle, self.convert_mem_ptr(properties_offset), self.convert_mem_ptr(hash_offset), self.convert_mem_ptr(name_offset), self.convert_mem_ptr(attributes_offset), self.convert_mem_ptr(creator_offset), royalties_handle, self.convert_mem_ptr(uris_offset))
+    fn get_dcdt_token_data(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64, value_handle: i32, properties_offset: MemPtr, hash_offset: MemPtr, name_offset: MemPtr, attributes_offset: MemPtr, creator_offset: MemPtr, royalties_handle: i32, uris_offset: MemPtr) -> i32 {
+        (self.c_func_pointers_ptr.get_dcdt_token_data_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(address_offset), self.convert_mem_ptr(token_id_offset), self.convert_mem_length(token_id_len), nonce, value_handle, self.convert_mem_ptr(properties_offset), self.convert_mem_ptr(hash_offset), self.convert_mem_ptr(name_offset), self.convert_mem_ptr(attributes_offset), self.convert_mem_ptr(creator_offset), royalties_handle, self.convert_mem_ptr(uris_offset))
     }
 
-    fn get_dct_local_roles(&self, token_id_handle: i32) -> i64 {
-        (self.c_func_pointers_ptr.get_dct_local_roles_func_ptr)(self.vm_hooks_ptr, token_id_handle)
+    fn get_dcdt_local_roles(&self, token_id_handle: i32) -> i64 {
+        (self.c_func_pointers_ptr.get_dcdt_local_roles_func_ptr)(self.vm_hooks_ptr, token_id_handle)
     }
 
     fn validate_token_identifier(&self, token_id_handle: i32) -> i32 {
@@ -107,16 +107,16 @@ impl drt_chain_vm_executor::VMHooks for CapiVMHooks {
         (self.c_func_pointers_ptr.transfer_value_execute_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(dest_offset), self.convert_mem_ptr(value_offset), gas_limit, self.convert_mem_ptr(function_offset), self.convert_mem_length(function_length), num_arguments, self.convert_mem_ptr(arguments_length_offset), self.convert_mem_ptr(data_offset))
     }
 
-    fn transfer_dct_execute(&self, dest_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, value_offset: MemPtr, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32 {
-        (self.c_func_pointers_ptr.transfer_dct_execute_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(dest_offset), self.convert_mem_ptr(token_id_offset), self.convert_mem_length(token_id_len), self.convert_mem_ptr(value_offset), gas_limit, self.convert_mem_ptr(function_offset), self.convert_mem_length(function_length), num_arguments, self.convert_mem_ptr(arguments_length_offset), self.convert_mem_ptr(data_offset))
+    fn transfer_dcdt_execute(&self, dest_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, value_offset: MemPtr, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32 {
+        (self.c_func_pointers_ptr.transfer_dcdt_execute_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(dest_offset), self.convert_mem_ptr(token_id_offset), self.convert_mem_length(token_id_len), self.convert_mem_ptr(value_offset), gas_limit, self.convert_mem_ptr(function_offset), self.convert_mem_length(function_length), num_arguments, self.convert_mem_ptr(arguments_length_offset), self.convert_mem_ptr(data_offset))
     }
 
-    fn transfer_dct_nft_execute(&self, dest_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, value_offset: MemPtr, nonce: i64, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32 {
-        (self.c_func_pointers_ptr.transfer_dct_nft_execute_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(dest_offset), self.convert_mem_ptr(token_id_offset), self.convert_mem_length(token_id_len), self.convert_mem_ptr(value_offset), nonce, gas_limit, self.convert_mem_ptr(function_offset), self.convert_mem_length(function_length), num_arguments, self.convert_mem_ptr(arguments_length_offset), self.convert_mem_ptr(data_offset))
+    fn transfer_dcdt_nft_execute(&self, dest_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, value_offset: MemPtr, nonce: i64, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32 {
+        (self.c_func_pointers_ptr.transfer_dcdt_nft_execute_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(dest_offset), self.convert_mem_ptr(token_id_offset), self.convert_mem_length(token_id_len), self.convert_mem_ptr(value_offset), nonce, gas_limit, self.convert_mem_ptr(function_offset), self.convert_mem_length(function_length), num_arguments, self.convert_mem_ptr(arguments_length_offset), self.convert_mem_ptr(data_offset))
     }
 
-    fn multi_transfer_dct_nft_execute(&self, dest_offset: MemPtr, num_token_transfers: i32, token_transfers_args_length_offset: MemPtr, token_transfer_data_offset: MemPtr, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32 {
-        (self.c_func_pointers_ptr.multi_transfer_dct_nft_execute_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(dest_offset), num_token_transfers, self.convert_mem_ptr(token_transfers_args_length_offset), self.convert_mem_ptr(token_transfer_data_offset), gas_limit, self.convert_mem_ptr(function_offset), self.convert_mem_length(function_length), num_arguments, self.convert_mem_ptr(arguments_length_offset), self.convert_mem_ptr(data_offset))
+    fn multi_transfer_dcdt_nft_execute(&self, dest_offset: MemPtr, num_token_transfers: i32, token_transfers_args_length_offset: MemPtr, token_transfer_data_offset: MemPtr, gas_limit: i64, function_offset: MemPtr, function_length: MemLength, num_arguments: i32, arguments_length_offset: MemPtr, data_offset: MemPtr) -> i32 {
+        (self.c_func_pointers_ptr.multi_transfer_dcdt_nft_execute_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(dest_offset), num_token_transfers, self.convert_mem_ptr(token_transfers_args_length_offset), self.convert_mem_ptr(token_transfer_data_offset), gas_limit, self.convert_mem_ptr(function_offset), self.convert_mem_length(function_length), num_arguments, self.convert_mem_ptr(arguments_length_offset), self.convert_mem_ptr(data_offset))
     }
 
     fn create_async_call(&self, dest_offset: MemPtr, value_offset: MemPtr, data_offset: MemPtr, data_length: MemLength, success_offset: MemPtr, success_length: MemLength, error_offset: MemPtr, error_length: MemLength, gas: i64, extra_gas_for_callback: i64) -> i32 {
@@ -203,44 +203,44 @@ impl drt_chain_vm_executor::VMHooks for CapiVMHooks {
         (self.c_func_pointers_ptr.get_call_value_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(result_offset))
     }
 
-    fn get_dct_value(&self, result_offset: MemPtr) -> i32 {
-        (self.c_func_pointers_ptr.get_dct_value_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(result_offset))
+    fn get_dcdt_value(&self, result_offset: MemPtr) -> i32 {
+        (self.c_func_pointers_ptr.get_dcdt_value_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(result_offset))
     }
 
-    fn get_dct_value_by_index(&self, result_offset: MemPtr, index: i32) -> i32 {
-        (self.c_func_pointers_ptr.get_dct_value_by_index_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(result_offset), index)
+    fn get_dcdt_value_by_index(&self, result_offset: MemPtr, index: i32) -> i32 {
+        (self.c_func_pointers_ptr.get_dcdt_value_by_index_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(result_offset), index)
     }
 
-    fn get_dct_token_name(&self, result_offset: MemPtr) -> i32 {
-        (self.c_func_pointers_ptr.get_dct_token_name_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(result_offset))
+    fn get_dcdt_token_name(&self, result_offset: MemPtr) -> i32 {
+        (self.c_func_pointers_ptr.get_dcdt_token_name_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(result_offset))
     }
 
-    fn get_dct_token_name_by_index(&self, result_offset: MemPtr, index: i32) -> i32 {
-        (self.c_func_pointers_ptr.get_dct_token_name_by_index_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(result_offset), index)
+    fn get_dcdt_token_name_by_index(&self, result_offset: MemPtr, index: i32) -> i32 {
+        (self.c_func_pointers_ptr.get_dcdt_token_name_by_index_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(result_offset), index)
     }
 
-    fn get_dct_token_nonce(&self) -> i64 {
-        (self.c_func_pointers_ptr.get_dct_token_nonce_func_ptr)(self.vm_hooks_ptr)
+    fn get_dcdt_token_nonce(&self) -> i64 {
+        (self.c_func_pointers_ptr.get_dcdt_token_nonce_func_ptr)(self.vm_hooks_ptr)
     }
 
-    fn get_dct_token_nonce_by_index(&self, index: i32) -> i64 {
-        (self.c_func_pointers_ptr.get_dct_token_nonce_by_index_func_ptr)(self.vm_hooks_ptr, index)
+    fn get_dcdt_token_nonce_by_index(&self, index: i32) -> i64 {
+        (self.c_func_pointers_ptr.get_dcdt_token_nonce_by_index_func_ptr)(self.vm_hooks_ptr, index)
     }
 
-    fn get_current_dct_nft_nonce(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength) -> i64 {
-        (self.c_func_pointers_ptr.get_current_dct_nft_nonce_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(address_offset), self.convert_mem_ptr(token_id_offset), self.convert_mem_length(token_id_len))
+    fn get_current_dcdt_nft_nonce(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength) -> i64 {
+        (self.c_func_pointers_ptr.get_current_dcdt_nft_nonce_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(address_offset), self.convert_mem_ptr(token_id_offset), self.convert_mem_length(token_id_len))
     }
 
-    fn get_dct_token_type(&self) -> i32 {
-        (self.c_func_pointers_ptr.get_dct_token_type_func_ptr)(self.vm_hooks_ptr)
+    fn get_dcdt_token_type(&self) -> i32 {
+        (self.c_func_pointers_ptr.get_dcdt_token_type_func_ptr)(self.vm_hooks_ptr)
     }
 
-    fn get_dct_token_type_by_index(&self, index: i32) -> i32 {
-        (self.c_func_pointers_ptr.get_dct_token_type_by_index_func_ptr)(self.vm_hooks_ptr, index)
+    fn get_dcdt_token_type_by_index(&self, index: i32) -> i32 {
+        (self.c_func_pointers_ptr.get_dcdt_token_type_by_index_func_ptr)(self.vm_hooks_ptr, index)
     }
 
-    fn get_num_dct_transfers(&self) -> i32 {
-        (self.c_func_pointers_ptr.get_num_dct_transfers_func_ptr)(self.vm_hooks_ptr)
+    fn get_num_dcdt_transfers(&self) -> i32 {
+        (self.c_func_pointers_ptr.get_num_dcdt_transfers_func_ptr)(self.vm_hooks_ptr)
     }
 
     fn get_call_value_token_name(&self, call_value_offset: MemPtr, token_name_offset: MemPtr) -> i32 {
@@ -399,20 +399,20 @@ impl drt_chain_vm_executor::VMHooks for CapiVMHooks {
         (self.c_func_pointers_ptr.managed_get_return_data_func_ptr)(self.vm_hooks_ptr, result_id, result_handle)
     }
 
-    fn managed_get_multi_dct_call_value(&self, multi_call_value_handle: i32) {
-        (self.c_func_pointers_ptr.managed_get_multi_dct_call_value_func_ptr)(self.vm_hooks_ptr, multi_call_value_handle)
+    fn managed_get_multi_dcdt_call_value(&self, multi_call_value_handle: i32) {
+        (self.c_func_pointers_ptr.managed_get_multi_dcdt_call_value_func_ptr)(self.vm_hooks_ptr, multi_call_value_handle)
     }
 
-    fn managed_get_back_transfers(&self, dct_transfers_value_handle: i32, call_value_handle: i32) {
-        (self.c_func_pointers_ptr.managed_get_back_transfers_func_ptr)(self.vm_hooks_ptr, dct_transfers_value_handle, call_value_handle)
+    fn managed_get_back_transfers(&self, dcdt_transfers_value_handle: i32, call_value_handle: i32) {
+        (self.c_func_pointers_ptr.managed_get_back_transfers_func_ptr)(self.vm_hooks_ptr, dcdt_transfers_value_handle, call_value_handle)
     }
 
-    fn managed_get_dct_balance(&self, address_handle: i32, token_id_handle: i32, nonce: i64, value_handle: i32) {
-        (self.c_func_pointers_ptr.managed_get_dct_balance_func_ptr)(self.vm_hooks_ptr, address_handle, token_id_handle, nonce, value_handle)
+    fn managed_get_dcdt_balance(&self, address_handle: i32, token_id_handle: i32, nonce: i64, value_handle: i32) {
+        (self.c_func_pointers_ptr.managed_get_dcdt_balance_func_ptr)(self.vm_hooks_ptr, address_handle, token_id_handle, nonce, value_handle)
     }
 
-    fn managed_get_dct_token_data(&self, address_handle: i32, token_id_handle: i32, nonce: i64, value_handle: i32, properties_handle: i32, hash_handle: i32, name_handle: i32, attributes_handle: i32, creator_handle: i32, royalties_handle: i32, uris_handle: i32) {
-        (self.c_func_pointers_ptr.managed_get_dct_token_data_func_ptr)(self.vm_hooks_ptr, address_handle, token_id_handle, nonce, value_handle, properties_handle, hash_handle, name_handle, attributes_handle, creator_handle, royalties_handle, uris_handle)
+    fn managed_get_dcdt_token_data(&self, address_handle: i32, token_id_handle: i32, nonce: i64, value_handle: i32, properties_handle: i32, hash_handle: i32, name_handle: i32, attributes_handle: i32, creator_handle: i32, royalties_handle: i32, uris_handle: i32) {
+        (self.c_func_pointers_ptr.managed_get_dcdt_token_data_func_ptr)(self.vm_hooks_ptr, address_handle, token_id_handle, nonce, value_handle, properties_handle, hash_handle, name_handle, attributes_handle, creator_handle, royalties_handle, uris_handle)
     }
 
     fn managed_async_call(&self, dest_handle: i32, value_handle: i32, function_handle: i32, arguments_handle: i32) {
@@ -459,24 +459,24 @@ impl drt_chain_vm_executor::VMHooks for CapiVMHooks {
         (self.c_func_pointers_ptr.managed_execute_on_dest_context_func_ptr)(self.vm_hooks_ptr, gas, address_handle, value_handle, function_handle, arguments_handle, result_handle)
     }
 
-    fn managed_multi_transfer_dct_nft_execute(&self, dst_handle: i32, token_transfers_handle: i32, gas_limit: i64, function_handle: i32, arguments_handle: i32) -> i32 {
-        (self.c_func_pointers_ptr.managed_multi_transfer_dct_nft_execute_func_ptr)(self.vm_hooks_ptr, dst_handle, token_transfers_handle, gas_limit, function_handle, arguments_handle)
+    fn managed_multi_transfer_dcdt_nft_execute(&self, dst_handle: i32, token_transfers_handle: i32, gas_limit: i64, function_handle: i32, arguments_handle: i32) -> i32 {
+        (self.c_func_pointers_ptr.managed_multi_transfer_dcdt_nft_execute_func_ptr)(self.vm_hooks_ptr, dst_handle, token_transfers_handle, gas_limit, function_handle, arguments_handle)
     }
 
     fn managed_transfer_value_execute(&self, dst_handle: i32, value_handle: i32, gas_limit: i64, function_handle: i32, arguments_handle: i32) -> i32 {
         (self.c_func_pointers_ptr.managed_transfer_value_execute_func_ptr)(self.vm_hooks_ptr, dst_handle, value_handle, gas_limit, function_handle, arguments_handle)
     }
 
-    fn managed_is_dct_frozen(&self, address_handle: i32, token_id_handle: i32, nonce: i64) -> i32 {
-        (self.c_func_pointers_ptr.managed_is_dct_frozen_func_ptr)(self.vm_hooks_ptr, address_handle, token_id_handle, nonce)
+    fn managed_is_dcdt_frozen(&self, address_handle: i32, token_id_handle: i32, nonce: i64) -> i32 {
+        (self.c_func_pointers_ptr.managed_is_dcdt_frozen_func_ptr)(self.vm_hooks_ptr, address_handle, token_id_handle, nonce)
     }
 
-    fn managed_is_dct_limited_transfer(&self, token_id_handle: i32) -> i32 {
-        (self.c_func_pointers_ptr.managed_is_dct_limited_transfer_func_ptr)(self.vm_hooks_ptr, token_id_handle)
+    fn managed_is_dcdt_limited_transfer(&self, token_id_handle: i32) -> i32 {
+        (self.c_func_pointers_ptr.managed_is_dcdt_limited_transfer_func_ptr)(self.vm_hooks_ptr, token_id_handle)
     }
 
-    fn managed_is_dct_paused(&self, token_id_handle: i32) -> i32 {
-        (self.c_func_pointers_ptr.managed_is_dct_paused_func_ptr)(self.vm_hooks_ptr, token_id_handle)
+    fn managed_is_dcdt_paused(&self, token_id_handle: i32) -> i32 {
+        (self.c_func_pointers_ptr.managed_is_dcdt_paused_func_ptr)(self.vm_hooks_ptr, token_id_handle)
     }
 
     fn managed_buffer_to_hex(&self, source_handle: i32, dest_handle: i32) {
@@ -599,20 +599,20 @@ impl drt_chain_vm_executor::VMHooks for CapiVMHooks {
         (self.c_func_pointers_ptr.big_int_get_call_value_func_ptr)(self.vm_hooks_ptr, destination_handle)
     }
 
-    fn big_int_get_dct_call_value(&self, destination: i32) {
-        (self.c_func_pointers_ptr.big_int_get_dct_call_value_func_ptr)(self.vm_hooks_ptr, destination)
+    fn big_int_get_dcdt_call_value(&self, destination: i32) {
+        (self.c_func_pointers_ptr.big_int_get_dcdt_call_value_func_ptr)(self.vm_hooks_ptr, destination)
     }
 
-    fn big_int_get_dct_call_value_by_index(&self, destination_handle: i32, index: i32) {
-        (self.c_func_pointers_ptr.big_int_get_dct_call_value_by_index_func_ptr)(self.vm_hooks_ptr, destination_handle, index)
+    fn big_int_get_dcdt_call_value_by_index(&self, destination_handle: i32, index: i32) {
+        (self.c_func_pointers_ptr.big_int_get_dcdt_call_value_by_index_func_ptr)(self.vm_hooks_ptr, destination_handle, index)
     }
 
     fn big_int_get_external_balance(&self, address_offset: MemPtr, result: i32) {
         (self.c_func_pointers_ptr.big_int_get_external_balance_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(address_offset), result)
     }
 
-    fn big_int_get_dct_external_balance(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64, result_handle: i32) {
-        (self.c_func_pointers_ptr.big_int_get_dct_external_balance_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(address_offset), self.convert_mem_ptr(token_id_offset), self.convert_mem_length(token_id_len), nonce, result_handle)
+    fn big_int_get_dcdt_external_balance(&self, address_offset: MemPtr, token_id_offset: MemPtr, token_id_len: MemLength, nonce: i64, result_handle: i32) {
+        (self.c_func_pointers_ptr.big_int_get_dcdt_external_balance_func_ptr)(self.vm_hooks_ptr, self.convert_mem_ptr(address_offset), self.convert_mem_ptr(token_id_offset), self.convert_mem_length(token_id_len), nonce, result_handle)
     }
 
     fn big_int_new(&self, small_value: i64) -> i32 {
